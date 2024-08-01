@@ -10,4 +10,12 @@ class ContactController extends Controller
     {
         return view('index');
     }
+    public function contactForm()
+    {
+        return view('create');
+    }
+    public function editForm()
+    {
+        return view('edit');
+    }
 }
