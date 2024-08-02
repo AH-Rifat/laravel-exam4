@@ -43,8 +43,15 @@ class ContactController extends Controller
             'address' => ['nullable'],
         ]);
 
-        $contact = Contact::where('id', $id)->update($validatedData);
+        Contact::where('id', $id)->update($validatedData);
 
         return redirect()->back()->with('message', 'Contact Updated Successfully');
+    }
+
+    public function deleteContact($id)
+    {
+        $contact = Contact::find($id);
+        $contact->delete();
+        return redirect()->back()->with('message', 'Contact Deleted Successfully');
     }
 }

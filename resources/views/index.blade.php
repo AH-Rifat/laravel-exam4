@@ -1,5 +1,11 @@
 @extends('layout')
 @section('content')
+    @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="card">
         <div class="card-body">
             <div class="card-title d-flex justify-content-between">
@@ -40,11 +46,16 @@
                         <td>{{ $contact->phone }}</td>
                         <td>{{ $contact->address }}</td>
                         <td>{{ $contact->created_at->format('d-m-Y') }}</td>
-                        <td>
+                        <td class="d-flex justify-content-center gap-1">
                             <button type="button" class="btn btn-sm btn-info">View</button>
                             <a type="button" href={{ route('/edit', $contact->id) }}
                                 class="btn btn-sm btn-success">Edit</a>
-                            <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                            <form action={{ route('/destroy', $contact->id) }} method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Are you sure?')"
+                                    class="btn btn-sm btn-danger">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
