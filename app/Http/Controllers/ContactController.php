@@ -34,6 +34,10 @@ class ContactController extends Controller
         $contact = Contact::find($id);
         return view('edit', compact('contact'));
     }
+    public function show($id){
+        $contact = Contact::find($id);
+        return view('show', compact('contact'));
+    }
     public function updateForm(Request $request, $id)
     {
         $validatedData  = $request->validate([

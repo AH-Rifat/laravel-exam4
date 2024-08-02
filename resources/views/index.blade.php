@@ -21,11 +21,11 @@
                         </select>
                         <button class="btn btn-sm btn-outline-success" type="submit">Apply</button>
                     </form>
-                    <form class="d-flex ms-4">
+                    <div class="d-flex ms-4">
                         <input class="form-control form-control-sm me-2" type="search" placeholder="Search"
                             aria-label="Search">
                         <button class="btn btn-sm btn-outline-success" type="submit">Search</button>
-                    </form>
+                    </div>
                 </div>
             </div>
             <table class="table table-striped mt-3 text-center">
@@ -34,7 +34,6 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Address</th>
                     <th>Created At</th>
                     <th>Action</th>
                 </tr>
@@ -44,10 +43,9 @@
                         <td>{{ $contact->name }}</td>
                         <td>{{ $contact->email }}</td>
                         <td>{{ $contact->phone }}</td>
-                        <td>{{ $contact->address }}</td>
                         <td>{{ $contact->created_at->format('d-m-Y') }}</td>
                         <td class="d-flex justify-content-center gap-1">
-                            <button type="button" class="btn btn-sm btn-info">View</button>
+                            <a type="button" href={{ route('/show', $contact->id) }} class="btn btn-sm btn-info">View</a>
                             <a type="button" href={{ route('/edit', $contact->id) }}
                                 class="btn btn-sm btn-success">Edit</a>
                             <form action={{ route('/destroy', $contact->id) }} method="post">
