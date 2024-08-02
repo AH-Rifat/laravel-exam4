@@ -32,32 +32,22 @@
                     <th>Created At</th>
                     <th>Action</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Kamal</td>
-                    <td>kamal@gmail.com</td>
-                    <td>01652413644</td>
-                    <td>jj kkljj kljkja</td>
-                    <td>23-3-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-info">View</button>
-                        <a type="button" href={{ route('/edit') }} class="btn btn-sm btn-success">Edit</a>
-                        <button type="button" class="btn btn-sm btn-danger">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Kamal</td>
-                    <td>kamal@gmail.com</td>
-                    <td>01652413644</td>
-                    <td>jj kkljj kljkja</td>
-                    <td>23-3-2024</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-info">View</button>
-                        <button type="button" class="btn btn-sm btn-success">Edit</button>
-                        <button type="button" class="btn btn-sm btn-danger">Delete</button>
-                    </td>
-                </tr>
+                @foreach ($contacts as $contact)
+                    <tr>
+                        <td>{{ $contact->id }}</td>
+                        <td>{{ $contact->name }}</td>
+                        <td>{{ $contact->email }}</td>
+                        <td>{{ $contact->phone }}</td>
+                        <td>{{ $contact->address }}</td>
+                        <td>{{ $contact->created_at->format('d-m-Y') }}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-info">View</button>
+                            <a type="button" href={{ route('/edit', $contact->id) }}
+                                class="btn btn-sm btn-success">Edit</a>
+                            <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>
