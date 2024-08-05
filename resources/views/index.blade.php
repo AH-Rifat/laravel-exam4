@@ -11,21 +11,21 @@
             <div class="card-title d-flex justify-content-between">
                 <h5>All Contacts List</h5>
                 <div class="d-flex">
-                    <form class="d-flex">
-                        <select class="form-select form-select-sm me-2">
+                    <form action="{{ route('/') }}" method="GET" class="d-flex">
+                        <select name="sort" class="form-select form-select-sm me-2">
                             <option selected>Choose Sorting</option>
-                            <option value="1">Name -Asc</option>
-                            <option value="1">created_at -Asc</option>
-                            <option value="2">Name -Desc</option>
-                            <option value="2">created_at -Desc</option>
+                            <option value="name-ase">Name -Asc</option>
+                            <option value="created_at-ase">created_at -Asc</option>
+                            <option value="name-desc">Name -Desc</option>
+                            <option value="created_at-desc">created_at -Desc</option>
                         </select>
                         <button class="btn btn-sm btn-outline-success" type="submit">Apply</button>
                     </form>
-                    <div class="d-flex ms-4">
-                        <input class="form-control form-control-sm me-2" type="search" placeholder="Search"
+                    <form method="GET" action={{ route('/') }} class="d-flex ms-4">
+                        <input class="form-control form-control-sm me-2" type="search" name="search" placeholder="Search"
                             aria-label="Search">
                         <button class="btn btn-sm btn-outline-success" type="submit">Search</button>
-                    </div>
+                    </form>
                 </div>
             </div>
             <table class="table table-striped mt-3 text-center">

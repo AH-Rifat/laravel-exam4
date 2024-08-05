@@ -7,9 +7,26 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request, Contact $contact)
     {
-        $contacts = Contact::all();
+        $contacts = $contact->where('name', 'like', '%' . $request->search . '%')
+            ->orWhere('email', 'like', '%' . $request->search . '%')->get();
+
+        switch ($request->sort) {
+            case 'name-asc':
+                $contacts = $contact->orderBy('name', 'asc')->get();
+                break;
+            case 'name-desc':
+                $contacts = $contact->orderBy('name', 'desc')->get();
+                break;
+            case 'created_at-asc':
+                $contacts = $contact->orderBy('created_at', 'asc')->get();
+                break;
+            case 'created_at-desc':
+                $contacts = $contact->orderBy('created_at', 'desc')->get();
+                break;
+        }
+
         return view('index', compact('contacts'));
     }
     public function contactForm()
@@ -34,7 +51,8 @@ class ContactController extends Controller
         $contact = Contact::find($id);
         return view('edit', compact('contact'));
     }
-    public function show($id){
+    public function show($id)
+    {
         $contact = Contact::find($id);
         return view('show', compact('contact'));
     }
