@@ -13,17 +13,11 @@ class ContactController extends Controller
             ->orWhere('email', 'like', '%' . $request->search . '%')->get();
 
         switch ($request->sort) {
-            case 'name-asc':
-                $contacts = $contact->orderBy('name', 'asc')->get();
-                break;
-            case 'name-desc':
-                $contacts = $contact->orderBy('name', 'desc')->get();
+            case 'name':
+                $contacts = $contacts->sortBy('name');
                 break;
             case 'created_at-asc':
-                $contacts = $contact->orderBy('created_at', 'asc')->get();
-                break;
-            case 'created_at-desc':
-                $contacts = $contact->orderBy('created_at', 'desc')->get();
+                $contacts = $contacts->sortBy('created_at');
                 break;
         }
 
@@ -35,7 +29,7 @@ class ContactController extends Controller
     }
     public function store(Request $request)
     {
-        $validatedData  = $request->validate([
+        $validatedData = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'unique:contacts'],
             'phone' => ['nullable'],
@@ -58,7 +52,7 @@ class ContactController extends Controller
     }
     public function updateForm(Request $request, $id)
     {
-        $validatedData  = $request->validate([
+        $validatedData = $request->validate([
             'name' => ['required'],
             'email' => ['required'],
             'phone' => ['nullable'],

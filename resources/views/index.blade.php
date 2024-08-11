@@ -14,10 +14,8 @@
                     <form action="{{ route('/') }}" method="GET" class="d-flex">
                         <select name="sort" class="form-select form-select-sm me-2">
                             <option selected>Choose Sorting</option>
-                            <option value="name-ase">Name -Asc</option>
-                            <option value="created_at-ase">created_at -Asc</option>
-                            <option value="name-desc">Name -Desc</option>
-                            <option value="created_at-desc">created_at -Desc</option>
+                            <option value="name">Name</option>
+                            <option value="created_at">Created_at</option>
                         </select>
                         <button class="btn btn-sm btn-outline-success" type="submit">Apply</button>
                     </form>
@@ -37,9 +35,10 @@
                     <th>Created At</th>
                     <th>Action</th>
                 </tr>
+                <div class="d-none"> {{ $i = 1 }} </div>
                 @foreach ($contacts as $contact)
                     <tr>
-                        <td>{{ $contact->id }}</td>
+                        <td>{{ $i++ }}</td>
                         <td>{{ $contact->name }}</td>
                         <td>{{ $contact->email }}</td>
                         <td>{{ $contact->phone }}</td>
