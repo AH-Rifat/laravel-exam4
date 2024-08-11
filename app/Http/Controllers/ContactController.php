@@ -16,7 +16,7 @@ class ContactController extends Controller
             case 'name':
                 $contacts = $contacts->sortBy('name');
                 break;
-            case 'created_at-asc':
+            case 'created_at':
                 $contacts = $contacts->sortBy('created_at');
                 break;
         }
